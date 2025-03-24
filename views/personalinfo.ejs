@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Attendance</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4e73df, #1c1c1c);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5rem;  /* Smaller font size */
+            color: #fff;
+            text-align: center;
+            margin-top: 50px;
+            font-weight: 700;
+        }
+
+        h4 {
+            font-size: 1rem;  /* Smaller font size */
+            color: #f1f1f1;
+            text-align: center;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        /* Container for the content */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background: #2c3e50;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 10px;  /* Slightly smaller padding */
+            text-align: center;
+            color: #fff;
+        }
+
+        th {
+            background-color: #3498db;
+        }
+
+        tr:nth-child(even) {
+            background-color: #34495e;
+        }
+
+        tr:hover {
+            background-color: #2c3e50;
+        }
+
+        /* Button styling */
+        .btn {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 18px;  /* Slightly smaller padding */
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 1rem;  /* Smaller font size */
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2ecc71;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;  /* Adjusted for smaller screens */
+            }
+
+            h4 {
+                font-size: 0.9rem;  /* Smaller font for smaller screens */
+            }
+
+            table {
+                font-size: 0.85rem;  /* Smaller font size for the table */
+            }
+
+            th, td {
+                padding: 8px;  /* Reduced padding for smaller screens */
+            }
+        }
+
+        /* Add some animation to elements */
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Keyframes for animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #2c3e50;
+            color: #fff;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <% let l_total=0 %>
+    <% let total_p=0 %>
+    <% let l_taken=0 %>
+        <% for(let attendance of attendances) {%>
+            <%= student.roll %>
+            <% if(student.roll==attendance.Present_roll){ %>
+                <%= attendance.Present_roll %>
+                <% total_p=total_p+1 %>
+            <% } %>
+    <% } %>
+    <% for(let subject of subjects){ %>
+        <% for(let attendance of attendances) { %>
+            <% if(subject.name==attendance.subject_name){ %>
+                <% l_total=subject.total_l+l_total %>
+                <% l_taken=subject.taken_l+1 %>
+            <% } %>
+        <% } %>
+    <% } %>
+
+    <div class="container fade-in">
+        <center><h2><%= student.surname %> <%= student.name %> <%= student.fathers_name %></h2></center>
+        <h4>
+            Class: <%= student.branch %><br>
+            Total number of lectures: <%= l_total %><br>
+            Total number of lectures Taken: <%= l_taken %><br>
+            Total number of lectures attended: <%= total_p %><br>
+        </h4>
+
+        <!-- Table for showing dates and attendance -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Subject</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let subject of subjects){ %>
+                    <% let s_check=0 %>
+                    <tr>
+                        <% for(let attendance of attendances){%>
+                            <% l_taken= subject.taken_l %>
+                            <% for(let i=1; i<=l_taken; i++){%>
+                                <% if( s_check==0 && student.roll==attendance.Present_roll  && subject.name==attendance.subject_name && l_taken==attendance.l_number){ %>
+                                    <td><%=attendance.date.toDateString()%></td>
+                                    <td><%=attendance.subject_name %></td>
+                                    <td>Present</td>
+                                    <% s_check= s_check+1 %>
+                                <% } %>
+                                <% if( s_check==0 && subject.name==attendance.subject_name && l_taken==attendance.l_number) {%>
+                                    <tr>
+                                        <td><%=attendance.date.toDateString()%></td>
+                                        <td><%=attendance.subject_name %></td>
+                                        <td>Absent</td>
+                                        <% s_check= s_check+1 %>
+                                    </tr>
+                                <% }%>
+                            <%}%>
+                        <%}%>
+                    </tr>
+                <% } %>
+                <tr>
+            </tbody>
+        </table>
+
+        <a href="#" class="btn">Download Attendance Report</a>
+
+        
+    </div>
+
+
+</body>
+</html>

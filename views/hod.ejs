@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Teacher</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+    <% var countp=0 %>
+    <% var count= 0 %>
+    <% for(let student of students){ %>
+        <% count=count+1; %>
+    <% } %>
+    <% date=new Date().toDateString() %>
+    <% for(let attendance of attendances) { %>
+        <% date1=attendance.date.toDateString() %>
+        <% if(date==date1) {%>
+            <% countp=countp+1; %>
+        <% } %>
+    <% } %>
+    <section> 
+<h2><center>Bsc. Computer Science And BCA </center></h2>
+    </section>
+    <div class="container">
+        <h3>Computer Science and Application</h3>
+        <button id="addTeacherBtn">Show the number of Students</button>
+        <div id="teacherForm" class="hidden">
+            <form method="post" action="/student" id="teacherAddForm1">
+                <div class="input-group">
+               <label for="teacherName" style="font-size: 30px; color: white;" >Number Of Students:<%= count %></label>
+                </div>
+                <a><button type="submit">Show Me More</button></a>
+            </form>
+            <hr>
+        <!-- </div> -->
+    </div>
+    <hr>
+    <br>
+    <div class="container">
+        <h3>Add Teacher</h3>
+        <form action="/new_teacher">
+            <button type="submit" id="addTeacherBtn">Add New Teacher</button>
+        </form>
+    <!-- </div> -->
+     <hr>
+    <br>
+    <!-- <div class="container"> -->
+        <h3>Show Subjet</h3>
+        <form action="/subject">
+            <button type="submit" id="addTeacherBtn">Subject</button>
+        </form>
+    <!-- </div> -->
+     <hr>
+    <br>
+    <center><a href="/"><button type="submit">Back</button></a></center>
+</body>
+</html>
+
+   <style>
+    body {
+    font-family: 'Arial', sans-serif;
+    background-color: gray;
+    background: linear-gradient(to right , #f0f97e , #00e0d8 );
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 100%;
+    margin: auto;
+    padding: 20px;
+    /* background: #ffffff; */
+    background: linear-gradient(to right, #00b3ff , #5603BD);
+    border-radius: 10px;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* .container:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+} */
+
+h2 {
+    margin-bottom: 20px;
+    color: black;
+    opacity: 0.9;
+    transition: color 0.3s;
+}
+
+h3{
+    color: #ffff;
+}
+
+h2:hover {
+    color: #007bff;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    width: 200px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+.hidden {
+    display: none;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+
+    border: 2px solid black;
+    border-color: antiquewhite;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+
+}
+
+input[type="text"]:hover {
+    border-color: #007bff;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+
+    input[type="text"] {
+        font-size: 14px;
+    }
+}
+
+   </style>
+   <script>
+   document.getElementById('addTeacherBtn').addEventListener('click', function() {
+    const teacherForm = document.getElementById('teacherForm');
+    teacherForm.classList.toggle('hidden');
+});
+
+// Handle form submission (for demonstration purposes)
+document.getElementById('teacherAddForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const teacherName = document.getElementById('teacherName').value;
+    const subject = document.getElementById('subject').value;
+    
+    // Here you could handle adding the teacher to the database
+    alert(`Teacher ${teacherName} added for the subject ${subject}!`);
+    
+    // Clear the form
+    document.getElementById('teacherAddForm').reset();
+    document.getElementById('teacherForm').classList.add('hidden'); // Hide the form again
+});
+   </script>
+</body>
+</html>
+
+<!-- 
+<div class="bca">
+    <h3>BCS</h3>
+    <br>
+    <b>Total Number of Student:</b>
+    
+    <br><br>
+    <a href="/bcs"><button>More</button></a>
+    <br> -->

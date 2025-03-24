@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Teacher</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f0f97e, #00e0d8);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background: linear-gradient(to right , #CFBCF9 ,#FFAEF1 );
+    padding: 30px;
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    perspective: 1000px; /* Adds perspective for 3D */
+    transform: rotateY(10deg); /* Slightly tilts the form */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+label {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    border-radius: 20px;
+   
+}
+
+input:focus {
+    transform: translateY(-5px); /* Raises the input when focused */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #4e4376;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+label
+{
+    text-align: center;
+}
+
+button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>New Teacher</h1>
+        <form method="post" action="/new_teacher">
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="First name">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="class">User Name(Remeber)</label>
+                <input type="text" name="username" id="name" placeholder="User name which help to login">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="name">Password(Remeber)</label>
+                <input type="password" name="password" id="name" placeholder="must remeber">
+            </div>
+            <br>
+                <br>
+                <button type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

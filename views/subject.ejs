@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Management</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #cfbcf9, #ffaef1);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: linear-gradient(to right , #f48991 , #5a6fe3);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus {
+            border-color: #6a11cb;
+            outline: none;
+        }
+
+        button {
+            padding: 6px 10px;
+            background-color: lightpink;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #4e73df;
+            transform: scale(1.05);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        th {
+            background-color: #f7f7f7;
+            color: #6a11cb;
+            font-weight: 600;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        td form button {
+            background-color: #dc3545;
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+
+        td form button:hover {
+            background-color: #c82333;
+            transform: scale(1.1);
+        }
+
+        table {
+            background: linear-gradient(to right , #f48991 , #5a6fe3);
+        }
+
+        .btn1, .btn2 {
+            margin-right: 100px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            button, select {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            th, td {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            button, select {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .btn1, .btn2 {
+                margin-right: 20px;
+            }
+
+            td form button {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 20px;
+            }
+
+            table {
+                font-size: 10px;
+            }
+
+            button, select {
+                font-size: 10px;
+                padding: 6px;
+            }
+
+            td form button {
+                font-size: 8px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Subject Management</h2>
+
+        <!-- Subject Selection Form -->
+        <form>
+            <label for="subjects" style="font-size: 14px; color: #333;">Select Subject:</label>
+            <select id="subjects" name="subjects">
+                <option value="bcsfy">BCSFY</option>
+                <option value="bcssy">BCSSY</option>
+                <option value="bcsty">BCSTY</option>
+                <option value="bcafy">BCAFY</option>
+                <option value="bcasy">BCASY</option>
+                <option value="bcaty">BCATY</option>
+            </select>
+            <br>
+            <br>
+            <center><button type="submit" class="btn1">Submit</button></center>
+        </form>
+        <!-- Subject Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject Name</th>
+                    <th>Sem</th>
+                    <th>Teacher</th>
+                    <th>Lectures Taken</th>
+                    <th>Lectures Remaining</th>
+                    <th>Total Lectures</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let subject of subjects) { %>
+                    <tr>
+                        <td><%= subject.name %></td>
+                        <td><%= subject.sem %></td>
+                        <% if (!subject.teacher_name) { %>
+                            <td>
+                                Give to:
+                                <form method="post" action="/add_teacher/<%= subject.id %>">
+                                    <select name="teacher">
+                                        <% for (let teacher of teacherss) { %>
+                                            <option><%= teacher.name %></option>
+                                        <% } %>
+                                    </select>
+                                    <button type="submit">Add</button>
+                                </form>
+                            </td>
+                        <% } else { %>
+                            <td><%= subject.teacher_name %></td>
+                        <% } %>
+                        <td><%= subject.taken_l %></td>
+                        <td><%= subject.remaining_l %></td>
+                        <td><%= subject.total_l %></td>
+                        <td>
+                            <form method="post" action="/remove_subject/<%= subject.id %>">
+                                <button type="submit">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <br><br>
+        <form action="/new_subject">
+            <button type="submit">Add New Subject</button>
+        </form>
+        <a href="/HOD"><button>Back</button></a>
+    </div>
+</body>
+</html>

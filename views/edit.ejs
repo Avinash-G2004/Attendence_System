@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Name</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 50%, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .btn {
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn.add {
+            background-color: #2ecc71; /* Green */
+        }
+
+        .btn.submit {
+            background-color: #3498db; /* Blue */
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .input-container {
+            margin: 20px 0;
+        }
+
+        input {
+            padding: 12px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            width: calc(50% - 20px);
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .name-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .name-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 10px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .name-list li:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .name-list button {
+            background: transparent;
+            border: none;
+            color: #e74c3c; /* Red */
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .name-list button:hover {
+            color: #c0392b; /* Darker Red */
+        }
+
+        @media (max-width: 600px) {
+            input {
+                width: calc(100% - 20px);
+            }
+
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Roll Number: <%= BCS.roll %></h2>
+        <h2>Name: <%= BCS.name %></h2>
+        <button class="btn add" id="addButton">Edit</button>
+        
+        <div class="input-container" id="inputContainer" style="display: none;">
+            <form method="post" action="/bcsfy/<%= BCS.id %>">
+                <input type="text" name="name" id="nameInput" placeholder="<%= BCS.name %>" required>
+                <input type="number" id="rollInput" placeholder="<%= BCS.roll %>" required>
+                <button class="btn submit" id="submitButton">Submit</button>
+            </form>
+            
+        </div>
+
+        <ul class="name-list" id="nameList"></ul>
+    </div>
+
+    <script>
+        document.getElementById('addButton').addEventListener('click', function() {
+            document.getElementById('inputContainer').style.display = 'block';
+        });
+
+     /*   document.getElementById('submitButton').addEventListener('click', function() {
+            const nameInput = document.getElementById('nameInput');
+            const rollInput = document.getElementById('rollInput');
+            
+            if (nameInput.value && rollInput.value) {
+                addName(nameInput.value, rollInput.value);
+                nameInput.value = '';
+                rollInput.value = '';
+                document.getElementById('inputContainer').style.display = 'none';
+            } else {
+                alert('Please enter both name and roll number.');
+            }
+        });
+
+        function addName(name, roll) {
+            const nameList = document.getElementById('nameList');
+            
+            const li = document.createElement('li');
+            li.innerHTML = `${name} (Roll No: ${roll}) <button onclick="editName(this)">Edit</button><button onclick="removeName(this)">Remove</button>`;
+            nameList.appendChild(li);
+        }
+*/
+   /*     function editName(button) {
+            const li = button.parentElement;
+            const text = li.childNodes[0].nodeValue.split(' (Roll No: ');
+            const name = text[0].trim();
+            const roll = text[1].replace(')', '').trim();
+            
+            const newName = prompt('Edit Name:', name);
+            const newRoll = prompt('Edit Roll No:', roll);
+            
+            if (newName && newRoll) {
+                li.childNodes[0].nodeValue = `${newName} (Roll No: ${newRoll})`;
+            }
+        }
+
+        function removeName(button) {
+            const li = button.parentElement;
+            li.remove();
+        }*/
+    </script>
+</body>
+</html>

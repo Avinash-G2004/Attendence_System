@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Subject</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #2b5876, #4e4376);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: white;
+    padding: 30px;
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    perspective: 1000px; /* Adds perspective for 3D */
+    transform: rotateY(10deg); /* Slightly tilts the form */
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    border-radius: 20px;
+}
+
+input:focus {
+    transform: translateY(-5px); /* Raises the input when focused */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+select{
+    height: 30px;
+    border:1px solid black;
+    background: transparent;
+
+}
+button {
+    width: 120px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #4e4376;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+label
+{
+    text-align: center;
+}
+
+button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h3>New  Subject</h2>
+        <form method="post" action="/new_subject">
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="Subject Name">
+            </div>
+            <div class="input-group">
+                <label for="name">Class</label>
+                <select name="branch">
+                    <option value="bcsfy" >BCS FY</option>
+                    <option value="bcssy" >BCS SY</option>
+                    <option value="bcsty" >BCS TY</option>
+                    <option value="bcafy" >BCA FY</option>
+                    <option value="bcasy" >BCA SY</option>
+                    <option value="bcaty" >BCA TY</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="name">Sem</label>
+                <select name="sem"  style="width: 60px;">
+                    <option value="1" >1</option>
+                    <option value="2" >2</option>
+                    <option value="3" >3</option>
+                    <option value="4" >4</option>
+                    <option value="5" >5</option>
+                    <option value="6" >6</option>
+                </select>
+            </div>
+<br>
+
+                <br>
+               <center><button type="submit">Add</button></center>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

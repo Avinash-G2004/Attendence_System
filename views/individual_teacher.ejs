@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Attendance</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #2c3e50, #bdc3c7);
+            color: #34495e;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2rem; /* Reduced font size */
+            color: #2980b9;
+        }
+
+        p {
+            font-size: 1rem; /* Reduced font size */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-custom {
+            background-color: #3498db;
+            border: none;
+            color: white;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-bottom: 20px; /* Added margin */
+        }
+
+        .btn-custom:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .back-btn {
+            background-color: #e74c3c;
+            color: white;
+            margin-top: 20px; /* Added margin */
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .subjects {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .subject-item {
+            margin: 10px 0; /* Reduced margin */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px; /* Reduced padding */
+            background: #ecf0f1;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .subject-item:hover {
+            background: #bdc3c7;
+        }
+
+        .attendance-btn {
+            margin-left: 15px;
+            background-color: #e67e22;
+            color: white;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .attendance-btn:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <p>
+    <script>let date = new Date().toDateString();
+         document.write(date);</script>
+         </p>
+    <h1>Teacher Attendance</h1>
+    <p><strong>Teacher:</strong><%= teacherss.name %></p>
+    <form method="get" action="/show_subject/<%= teacherss.name %>">
+        <button type="submit" id="showSubjectsBtn" class="btn btn-custom btn-block">Show Subjects</button>
+    </form>
+    <form method="post" action="/student">
+        <button type="submit" id="showSubjectsBtn" class="btn btn-custom btn-block">Details Attendance</button>
+    </form>
+    <br>
+    <a href="/"><button class="btn back-btn btn-block">Back</button></a>
+</div>
+
+<script>
+    document.getElementById('showSubjectsBtn').addEventListener('click', function() {
+        const subjectList = document.getElementById('subjectList');
+        if (subjectList.style.display === 'none') {
+            subjectList.style.display = 'block';
+        } else {
+            subjectList.style.display = 'none';
+        }
+    });
+
+    function goBack() {
+        window.history.back(); // Navigate to the previous page
+    }
+</script>
+
+</body>
+</html>

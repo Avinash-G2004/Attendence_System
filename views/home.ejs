@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCS & BCA Attendance</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+
+
+    <header>
+        <img src="Naik_clg_logo.jpg" alt="Student 3" class="rounded-image mx-auto d-block" height="50px" width="60px">
+
+
+        <h1>BCS & BCA Attendance System</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="/teacherlogin">Teacher</a></li>
+                <li><a href="/HOD_login">HOD</a></li>
+                <li><a href="/Addmission">Addmission</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href=""><script>let date = new Date().toDateString();
+         document.write(date);</script></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Welcome to the Attendance System</h2>
+            <p>Manage and track your attendance efficiently!</p>
+            <!-- <button id="getStarted">Get Started</button> -->
+    
+
+        </section>
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p>We provide a seamless attendance tracking system for BCS and BCA students.</p>
+        </section>
+
+ <!--       <section id="attendance">
+            <h2>Mark Attendance</h2>
+            <form id="attendanceForm" method="post" action="/fullinfo">
+                <label for="studentId">Student Roll:</label>
+                 <input  type="number" name="roll" required>
+                 <label for="studentId">Student Roll:</label>
+                 <select name="branch">
+                    <option value="bcsfy">BCS FY</option>
+                    <option value="bcssy">BCS SY</option>
+                    <option value="bcsty">BCS TY</option>
+                    <option value="bcafy">BCA FY</option>
+                    <option value="bcasy">BCA SY</option>
+                    <option value="bcaty">BCA TY</option>
+                 </select>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+-->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: support@attendance.com</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy;  BCS & BCA Attendance System</p>
+    </footer>
+
+    
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    /* background-color: grey; */
+}
+
+
+
+header {
+     
+    background: linear-gradient(to right, #FF0097, #5603BD);
+     color: white;
+    padding: 10px 20px;
+    text-align: center;
+ 
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li:hover{
+    text-decoration: underline;
+   
+
+  
+   
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #FFD700;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+section {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgb(	0,59,70);
+
+    background: linear-gradient(to right, #F0F97E, #00E0D8);
+
+    /* background: linear-gradient(to right, #CFBCF9, #FFAEF1); */
+
+
+
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+section:hover {
+    transform: scale(1.02);
+   opacity: 1;
+   box-shadow: #007BFF;
+}
+
+footer {
+    background: #007BFF;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+    </style>
+
+    <script>
+
+
+
+document.getElementById('getStarted').addEventListener('click', function() {
+    document.getElementById('attendance').scrollIntoView({ behavior: 'smooth' });
+});
+
+    </script>
+</body>
+</html>

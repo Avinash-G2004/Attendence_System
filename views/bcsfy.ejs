@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student </title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* General Body and Container Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right , #d39e00 , #dc3545);
+            color: #333;
+        }
+        .container {
+            margin-top: 50px;
+             height: auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        h3 {
+            color: #007bff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Input Fields */
+        .form-control {
+            border-radius: 10px;
+            box-shadow: none;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Button Styles */
+        .btn {
+            border-radius: 10px;
+            box-shadow: none;
+            font-weight: bold;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+            border-color: #d39e00;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+        /* Table Styling */
+        .table {
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+        th {
+            background-color: #007bff;
+            color: black  ;
+            text-align: center;
+            border-top: none;
+        }
+        td {
+            text-align: center;
+        }
+
+        /* Row Hover and Add Transition */
+        .rowData {
+            transition: all 0.3s ease;
+        }
+        .rowData:hover {
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .form-control {
+                font-size: 14px;
+            }
+            .btn {
+                font-size: 14px;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Add animation for buttons and inputs */
+        .btn, .form-control {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        /* table
+        {
+            background: linear-gradient(to right, #);
+        } */
+
+        th
+        {
+            font-size: 13px;
+        }
+        td
+        {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <% var countbcs_fy=0 %>
+    <% var countbcs_sy=0 %>
+    <% var countbcs_ty=0 %>
+    <% var countbca_fy=0 %>
+    <% var countbca_sy=0 %>
+    <% var countbca_ty=0 %>
+    <% var count_total_l=0 %>
+    <% var count_taken_l=0 %>
+    <% var count_remaing_l=0 %>
+    <% for(let student of students) { %>
+        <% if(student.branch=="bcsfy"){ %>
+            <% countbcs_fy=countbcs_fy+1 %>
+        <% } %>
+        <% if(student.branch=="bcssy"){ %>
+            <% countbcs_sy=countbcs_sy+1 %>
+        <% } %>
+        <% if(student.branch=="bcsty"){ %>
+            <% countbcs_ty=countbcs_ty+1 %>
+        <% } %>
+        <% if(student.branch=="bcafy"){ %>
+            <% countbca_fy=countbca_fy+1 %>
+        <% } %>
+        <% if(student.branch=="bcasy"){ %>
+            <% countbca_sy=countbca_sy+1 %>
+        <% } %>
+        <% if(student.branch=="bcaty"){ %>
+            <% countbca_ty=countbca_ty+1 %>
+        <% } %>
+    <% } %>
+<div class="container">
+  <a href="/hod"> <button>Back</button></a>
+    <h3>Student Attendance Record</h3>
+    <p>Number of Student in:<br><br>
+        BCS FY: <%= countbcs_fy %><br>
+        BCS SY: <%= countbcs_sy %><br>
+        BCS TY: <%= countbcs_ty %><br>
+        BCA FY: <%= countbca_fy %><br>
+        BCA SY: <%= countbca_sy %><br>
+        BCA TY: <%= countbca_ty %>
+    </p>
+    <!-- Form to add a new student -->
+    <form method="post" action="/showinfo" id="studentForm" class="mb-4">
+        <div class="row">
+            <div class="col">
+                <input name="Roll" type="text" id="rollNo" class="form-control" placeholder="Roll No.">
+            </div>
+            <div class="col">
+                <input name="branch" type="text" id="studentName" class="form-control" placeholder="bcsfy / bcafy etc">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+            </div>
+        </div>
+    </form>
+    
+    <!-- Table to display students -->
+    <table class="table table-striped table-bordered" id="studentTable">
+        <thead style="color: black;">
+            <tr>
+                <th>Roll No.</th>
+                <th>PRN</th>
+                <th>Student Name</th>
+                <th>Class</th>
+                <th>Lecturers Attend</th>
+                <th>Taken Lecturers</th>
+                <th>Remaing Lecturers</th>
+                <th>Total Lecturers</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% var count=0 %>
+        <% var count_a=0 %>
+        <% var persentage=0 %>
+        <% if(Roll!="" && branch!=""){%>
+            <% count=count+1 %>
+        <% } %>
+          <% for(let student of students){ %>
+            <% if(Roll==student.roll && branch==student.branch ) {%>
+                <% for(let subject of subjects) { %>
+                    <% if(student.branch==subject.branch) { %>
+                        <% count_total_l= subject.total_l+count_total_l %>
+                        <% count_taken_l= subject.taken_l+count_taken_l %>
+                    <% } %>
+                <% } %>
+                <% count_remaing_l= count_total_l-count_taken_l %>
+                <tr>
+                    <% persentage=(count_a/count_taken_l)*100 %>
+                    <td><%= student.roll %></td>
+                    <td><%= student.PRN %></td>
+                    <td><%= student.surname %> <%= student.name %> <%= student.fathers_name %></td>
+                    <td><%= student.branch %></td>
+                    <td><%= persentage %>%</td>
+                    <% count_a=0 %>
+                    <% persentage= 0 %>
+                    <td><%= count_taken_l %></td>
+                <% count_taken_l=0 %>
+                <td><%= count_remaing_l %></td>
+                <% count_remaing_l=0 %>
+                <td><%= count_total_l %></td>
+                <% count_total_l=0 %>
+                  </tr>
+                  <% count=count+1 %>
+            <% } %>
+            <% if(Roll==student.roll && count==0) { %>
+              <tr>
+                <% for(let Attendance of attendances){ %>
+                    <% if(student.branch==Attendance.branch && student.roll==Attendance.Present_roll) {%>
+                        <% count_a= count_a+1 %>
+                    <% } %>
+                <% } %>
+                <% persentage=(count_a/count_taken_l)*100 %>
+                <td><%= student.roll %></td>
+                <td><%= student.PRN %></td>
+                <td><%= student.surname %> <%= student.name %> <%= student.fathers_name %></td>
+                <td><%= student.branch %></td>
+                <td><%= persentage %>%</td>
+                <% count_a=0 %>
+                <% persentage= 0 %>
+                <td><%= count_taken_l %></td>
+                <td><%= count_remaing_l %></td>
+                <td><%= count_total_l %></td>
+              </tr>
+            <% } %>
+            <% if(branch==student.branch && count==0) { %>
+              <tr>
+                <% for(let subject of subjects) { %>
+                    <% if(student.branch==subject.branch) { %>
+                        <% count_total_l= subject.total_l+count_total_l %>
+                        <% count_taken_l= subject.taken_l+count_taken_l %>
+                    <% } %>
+                <% } %>
+                <% count_remaing_l= count_total_l-count_taken_l %>
+                <% for(let Attendance of attendances){ %>
+                    <% if(student.branch==Attendance.branch && student.roll==Attendance.Present_roll) {%>
+                        <% count_a= count_a+1 %>
+                    <% } %>
+                <% } %>
+                <% persentage=(count_a/count_taken_l)*100 %>
+                <td><%= student.roll %></td>
+                <td><%= student.PRN %></td>
+                <td><%= student.surname %> <%= student.name %> <%= student.fathers_name %></td>
+                <td><%= student.branch %></td>
+                <td><%= persentage %>%</td>
+                <% count_a=0 %>
+                <% persentage= 0 %>
+                <td><%= count_taken_l %></td>
+                <% count_taken_l=0 %>
+                <td><%= count_remaing_l %></td>
+                <% count_remaing_l=0 %>
+                <td><%= count_total_l %></td>
+                <% count_total_l=0 %>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
