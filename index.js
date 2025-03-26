@@ -23,11 +23,10 @@ app.set("views",  path.join(__dirname, "/views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, '/Photos')));
-//app.use(timeout('5s'));
 const dbURL = process.env.ATLAS_URL;
 async function main(){
   await mongoose.connect(dbURL,{
-   /* useNewUrlParser: true,
+    /* useNewUrlParser: true,
     useUnifiedTopology: true*/
   }).then(()=>{
     console.log("mongo is working");
@@ -36,7 +35,7 @@ async function main(){
   });
 }
 main().then( ()=>{
-  console.log("");
+  console.log(" mongo is working");
 })
 .catch((err) => console.log(err));
 const port= process.env.PORT;
