@@ -72,7 +72,7 @@ app.get("/about",(res,req)=>{
 //hod
 //hod login due to these only hod can do there work
 app.get("/HOD_login",async (req,res)=>{
-  let id="67160509bc22aabac46639de";
+  let id="67e3ca6d44a53ecdb6212f7f";
   let hod_login= await HOD_login.findById(id, {timeoutMS:3000});
   if(hod_login==null){
     res.render("set_hod_pass");
@@ -88,7 +88,7 @@ app.get("/forgot_password",async (req,res)=>{
 
 app.post("/forgot_password",async (req,res)=>{
   let {name, uname, password, cpassword}= req.body;
-  let id="67160509bc22aabac46639de";
+  let id="67e3ca6d44a53ecdb6212f7f";
   let hod_login= await HOD_login.findById(id, {timeoutMS:3000});
   if(hod_login.name==name && hod_login.Username==uname && password==cpassword){
     let edit_L_number=await HOD_login.findByIdAndUpdate(id,
@@ -121,7 +121,7 @@ app.post("/set_Hod_pass",async (req,res)=>{
 //Check the password and throw on the hod page
 app.post("/Check_Hod_login",async (req,res)=>{
   let {uname, password}=req.body;
-  let id="67160509bc22aabac46639de";
+  let id="67e3ca6d44a53ecdb6212f7f";
   let hod_login= await HOD_login.findById(id);
   if(uname==hod_login.Username||password==hod_login.Password){
     res.redirect("/HOD");
@@ -455,7 +455,6 @@ app.post("/new_subject",async (req,res)=>{
       }
     }
    if(present==0){
-    console.log("done")
        present = new attendence({
         subject_name: name,
         l_number: l_number,
@@ -485,9 +484,23 @@ app.post("/new_subject",async (req,res)=>{
     let edit_L_remaing=await subject.findByIdAndUpdate(id,
       {remaing_l: l_remaing}
     );
-    res.redirect("/");
+    res.redirect("/dateby/"+name);
    });
-   //
+    
+   // show the data date wise
+   app.get("/dateby/:sub_name",async (req,res)=>{
+    let {sub_name}= req.params;
+    date= new Date().toDateString();
+    let attendances= await attendence.find();
+    res.render("dateby.ejs",{date,attendances,sub_name });
+   });
+   app.post("/dateby/:sub_name",async (req,res)=>{
+    let {sub_name}= req.params;
+    let {date} = req.body;
+    console.log(date);
+    let attendances= await attendence.find();
+    res.render("dateby.ejs",{date,attendances,sub_name });
+   })
 /*
 //to add the subject
 app.post("/addsubject",async (req,res)=>{

@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const { type } = require("os");
 const HOD_loginSchema = new mongoose.Schema({
     name:{
-        type: String,
-        required: true
+        type: String
+       
     },
     Username:{
         type: String,
