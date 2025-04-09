@@ -4,288 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Attendance Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Global styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            transition: background-color 0.3s ease;
+            height: 100vh;
+            color: white;
+            transition: background 0.3s;
         }
 
-        /* Container */
         .container {
-            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
             padding: 30px;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            width: 90%;
             max-width: 700px;
-            animation: fadeIn 2s ease-in-out;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
         }
 
-        header h3 {
-            /* font-size: 2.5rem; */
-            margin-bottom: 30px;
-            color: #5C8DFF;
-            text-transform: uppercase;
-            animation: headerFadeIn 2s ease-in-out;
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #f1f1f1;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         .class-selection {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+        }
+
+        .class-selection select, .class-selection button {
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
         }
 
         .class-selection select {
-            padding: 12px;
-            font-size: 1.1rem;
-            border-radius: 5px;
-            border: 2px solid #ccc;
-            outline: none;
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 350px;
+            background: #fff;
+            color: #333;
+            margin-right: 10px;
+            cursor: pointer;
         }
 
-        .class-selection select:hover {
-            border-color: #5C8DFF;
-            transform: scale(1.05);
+        .class-selection button {
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
         }
 
-        .teacher-list {
-            animation: slideIn 0.5s ease-out;
+        .class-selection button:hover {
+            background: linear-gradient(135deg, #ff4757, #e84118);
+            transform: scale(1.1);
         }
 
         .teacher-item {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            background: rgba(255, 255, 255, 0.25);
             padding: 15px;
-            margin: 15px 0;
-            background-color: #e0f7ff;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            width: 100%;
+            margin: 10px 0;
+            border-radius: 12px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            backdrop-filter: blur(5px);
+        }
+
+        .teacher-item h3 {
+            font-size: 1rem;
+            color: #f1f1f1;
         }
 
         .teacher-item:hover {
-            background-color: #d1e8ff;
-            transform: translateY(-5px);
-        }
-
-        .attendance-btn, .edit-btn, .edit-subject-btn {
-            padding: 8px 15px;
-            margin-top: 5px;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.3s ease;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
         }
 
         .attendance-btn {
-            background-color: #4CAF50;
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(26, 188, 156, 0.4);
         }
 
         .attendance-btn:hover {
-            background-color: #45a049;
-            transform: scale(1.05);
-        }
-
-        .edit-btn {
-            background-color: #ff9800;
-            margin-left: 10px;
-        }
-
-        .edit-btn:hover {
-            background-color: #f57c00;
-            transform: scale(1.05);
-        }
-
-        .edit-subject-btn {
-            background-color: #2196F3;
-        }
-
-        .edit-subject-btn:hover {
-            background-color: #1976D2;
-            transform: scale(1.05);
-        }
-
-        .subject-item {
-            margin-bottom: 8px;
-        }
-
-        .teacher-name {
-            font-weight: bold;
-            color: #333;
-            font-size: 1.2rem;
-        }
-
-        .teacher-buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .subject-edit-options {
-            display: none;
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #f2f2f2;
-            border-radius: 5px;
-        }
-
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-                padding: 20px;
-            }
-
-            header h1 {
-                font-size: 2rem;
-            }
-
-            .class-selection select {
-                width: 100%;
-                font-size: 1rem;
-            }
-
-            .teacher-item {
-                width: 100%;
-            }
-
-            .teacher-name {
-                font-size: 1rem;
-            }
-
-            .attendance-btn, .edit-btn, .edit-subject-btn {
-                padding: 6px 12px;
-                font-size: 0.85rem;
-            }
-
-            .teacher-buttons {
-                flex-direction: column;
-                margin-top: 15px;
-            }
-
-            .subject-edit-options {
-                margin-top: 10px;
-                padding: 8px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-
-            .class-selection select {
-                font-size: 0.9rem;
-            }
-
-            .attendance-btn, .edit-btn, .edit-subject-btn {
-                padding: 5px 10px;
-                font-size: 0.8rem;
-            }
-
-            .teacher-item {
-                padding: 10px;
-            }
-
-            .teacher-name {
-                font-size: 0.95rem;
-            }
+            background: linear-gradient(135deg, #16a085, #0e6655);
+            transform: scale(1.1);
         }
 
         @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes headerFadeIn {
-            0% {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideIn {
-            0% {
-                opacity: 0;
-                transform: translateX(-100%);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h3>Teacher Attendance Portal</h3>
-        </header>
+        <h3>Teacher Attendance Portal</h3>
         
         <div class="class-selection">
             <form method="post" action="/show_subject/<%= teacher_name %>">
                 <label for="class-select">Choose Class:</label>
-            <select name="branc">
-                <option value="bcsfy">BCS 1st Year</option>
-                <option value="bcssy">BCS 2nd Year</option>
-                <option value="bcsty">BCS 3rd Year</option>
-                <option value="bcafy">BCA 1st Year</option>
-                <option value="bcasy">BCA 2nd Year</option>
-                <option value="bcaty">BCA 3rd Year</option>
-            </select>
-            <button type="submit" class="attendance-btn">Show</button>
+                <select name="branc">
+                    <option value="bcsfy">BCS 1st Year</option>
+                    <option value="bcssy">BCS 2nd Year</option>
+                    <option value="bcsty">BCS 3rd Year</option>
+                    <option value="bcafy">BCA 1st Year</option>
+                    <option value="bcasy">BCA 2nd Year</option>
+                    <option value="bcaty">BCA 3rd Year</option>
+                </select>
+                <button type="submit" class="attendance-btn">Show</button>
             </form>
         </div>
-        <header class="class-selection">
+
+        <header>
             <h3><%= teacher_name %></h3>
             <% for(let subject of subjects) { %>
-                <% if(branch=="bcsfy" && subject.branch=="bcsfy") { %>
-                    <% if(subject.teacher_name==teacher_name) { %>
-                        <h3><%= subject.name %> <button class="attendance-btn" type="submit">Attendance</button></h3>
-                    <% } %>
+                <% if(branch == subject.branch && subject.teacher_name == teacher_name) { %>
+                    <div class="teacher-item">
+                        <h3><%= subject.name %></h3>
+                        <a href="/attendence/<%= teacher_name %>/<%= branch %>/<%= subject.sem %>/<%= subject.name %>">
+                            <button class="attendance-btn" type="submit">Attendance</button>
+                        </a>
+                    </div>
                 <% } %>
-                <% if(branch=="bcssy" && subject.branch=="bcssy") { %>
-                    <% if(subject.teacher_name==teacher_name) { %>
-                        <h3><%= subject.name %> <button class="attendance-btn" type="submit">Attendance</button></h3>
-                    <% } %>
-                <% } %>
-                <% if(branch=="bcsty" && subject.branch=="bcsty") { %>
-                    <% if(subject.teacher_name==teacher_name) { %>
-                        <h3><%= subject.name %> <a href="/attendence/<%= teacher_name %>/<%= branch %>/<%= subject.sem %>/<%= subject.name %>"><button class="attendance-btn" type="submit">Attendance</button></a></h3>
-                    <% } %>
-                <% } %>
-            <% } %> 
+            <% } %>
         </header>
     </div>
 </body>

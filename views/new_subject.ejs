@@ -6,136 +6,141 @@
     <title>New Subject</title>
     <style>
         * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-body {
-    background: linear-gradient(135deg, #2b5876, #4e4376);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        body {
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.form-container {
-    background-color: white;
-    padding: 30px;
-    width: 600px;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    perspective: 1000px; /* Adds perspective for 3D */
-    transform: rotateY(10deg); /* Slightly tilts the form */
-}
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-h3 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-}
+        .form-container {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 30px;
+            width: 600px;
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
 
-.form-container form {
-    display: flex;
-    flex-direction: column;
-}
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
 
-.input-group {
-    margin-bottom: 15px;
-    position: relative;
-}
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
 
-label {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 5px;
-    display: block;
-}
+        .input-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
 
-input {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background: #f9f9f9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    border-radius: 20px;
-}
+        label {
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 5px;
+            display: block;
+        }
 
-input:focus {
-    transform: translateY(-5px); /* Raises the input when focused */
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-    outline: none;
-}
-select{
-    height: 30px;
-    border:1px solid black;
-    background: transparent;
+        input, select {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.5);
+            color: #000;
+            outline: none;
+            transition: 0.3s;
+        }
 
-}
-button {
-    width: 120px;
-    padding: 10px 15px;
-    border: none;
-    background-color: #4e4376;
-    color: white;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-label
-{
-    text-align: center;
-}
+        input:focus, select:focus {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
 
-button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
-}
+        select option {
+            color: #000;
+        }
 
+        button {
+            width: 150px;
+            padding: 12px;
+            border: none;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            color: white;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(255, 0, 150, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 20px rgba(255, 0, 150, 0.4);
+        }
+
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 5px 10px rgba(255, 0, 150, 0.3);
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <h3>New  Subject</h2>
+        <h3>New Subject</h3>
         <form method="post" action="/new_subject">
             <div class="input-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" placeholder="Subject Name">
             </div>
             <div class="input-group">
-                <label for="name">Class</label>
+                <label for="class">Class</label>
                 <select name="branch">
-                    <option value="bcsfy" >BCS FY</option>
-                    <option value="bcssy" >BCS SY</option>
-                    <option value="bcsty" >BCS TY</option>
-                    <option value="bcafy" >BCA FY</option>
-                    <option value="bcasy" >BCA SY</option>
-                    <option value="bcaty" >BCA TY</option>
+                    <option value="bcsfy">BCS FY</option>
+                    <option value="bcssy">BCS SY</option>
+                    <option value="bcsty">BCS TY</option>
+                    <option value="bcafy">BCA FY</option>
+                    <option value="bcasy">BCA SY</option>
+                    <option value="bcaty">BCA TY</option>
                 </select>
             </div>
             <div class="input-group">
-                <label for="name">Sem</label>
-                <select name="sem"  style="width: 60px;">
-                    <option value="1" >1</option>
-                    <option value="2" >2</option>
-                    <option value="3" >3</option>
-                    <option value="4" >4</option>
-                    <option value="5" >5</option>
-                    <option value="6" >6</option>
+                <label for="sem">Sem</label>
+                <select name="sem">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
                 </select>
             </div>
-<br>
-
-                <br>
-               <center><button type="submit">Add</button></center>
-            </div>
+            <br>
+            <center><button type="submit">Add</button></center>
         </form>
     </div>
 </body>

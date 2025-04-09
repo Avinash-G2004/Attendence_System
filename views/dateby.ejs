@@ -3,18 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date wise</title>
+    <title>Date Wise Attendance</title>
+    <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* Animated Gradient Background */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #f0f973, #00e0d8, #00c3ff);
+            background-size: 300% 300%;
+            animation: gradientBG 6s ease infinite;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Background Animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Smaller Heading for Better Responsiveness */
+        h1 {
+            font-size: 2rem; /* Smaller size */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Attendance Container - Responsive Glassmorphism */
+        .attendance-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            max-width: 90%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Roll Number - Responsive Size & Style */
+        .roll-number {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 1rem; /* Smaller size */
+            font-weight: 500;
+            transition: transform 0.3s ease-in-out, background 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hover Effect */
+        .roll-number:hover {
+            transform: scale(1.08);
+            background: rgba(255, 255, 255, 0.4);
+            color: black;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Design - Adjustments for Smaller Screens */
+        @media (max-width: 1024px) { /* Laptops/Tablets */
+            h1 {
+                font-size: 1.8rem;
+            }
+            .roll-number {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 768px) { /* Mobile Devices */
+            h1 {
+                font-size: 1.6rem;
+            }
+            .attendance-container {
+                max-width: 95%;
+                padding: 10px;
+            }
+            .roll-number {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+            }
+        }
+
+        /* Smooth Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <%= date %>
-    <% let date1 %>
-    <% let date2 %>
-    <h1>Present Roll Number</h1>
-    <% for(let attendance of attendances) { %>
-        <% date1= date+" 00:00:00 GMT+0530 (India Standard Time)" %>
-        <% if(date1==attendance.date && attendance.subject_name==sub_name){ %>
-            <p><%= attendance.Present_roll %></p>
+    <h1>Present Roll Numbers</h1>
+    <div class="attendance-container">
+        <% for(let attendance of attendances) { %>
+            <% date1 = date + " 00:00:00 GMT+0530 (India Standard Time)" %>
+            <% if(date1 == attendance.date && attendance.subject_name == sub_name) { %>
+                <span class="roll-number"><%= attendance.Present_roll %></span>
+            <% } %>
         <% } %>
-    <% } %>
+    </div>
 </body>
 </html>
