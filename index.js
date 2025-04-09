@@ -23,7 +23,7 @@ app.set("views",  path.join(__dirname, "/views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, '/Photos')));
-const dbURL = process.env.ATLAS_URL;
+const dbURL = "mongodb+srv://gaikwadavinash1212:8080577570@cluster0.ywlnn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 async function main(){
   await mongoose.connect(dbURL,{
     /* useNewUrlParser: true,
@@ -31,7 +31,7 @@ async function main(){
   }).then(()=>{
     console.log("mongo is working");
   }).catch(err =>{
-    console.error("error is"+err);
+    console.error("error is");
   });
 }
 main().then( ()=>{
